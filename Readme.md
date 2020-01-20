@@ -1,7 +1,7 @@
 # Учебный проект «Код и Магия» [![Build status][travis-image]][travis-url]
 
 * Студент: [Павел  Лыгорев](https://up.htmlacademy.ru/javascript/19/user/874017).
-* Наставник: `Неизвестно`.
+* Наставник: [Артем Макаров](https://up.htmlacademy.ru/javascript/19/user/429879).
 
 ---
 
