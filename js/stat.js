@@ -11,7 +11,7 @@ var FONT_GAP = 10;
 var TEXT_WIDTH = 50;
 var BAR_WIDTH = 40;
 var BAR_HEIGHT = 150;
-var COLUMN_SPACE = 50;
+var COLUMN_SPACE = 108;
 
 var renderCloud = function (ctx, x, y, color) {
   ctx.fillStyle = color;
@@ -21,12 +21,24 @@ var renderCloud = function (ctx, x, y, color) {
 };
 
 var toneGenerator = function () {
-  var a = Math.ceil(Math.random() * 10);
-    var graphColor = 'hsla' + '(' + '246, ' + '199%, ' + '50%, ' + '0.' + a + ')';
+  var a = Math.ceil(Math.random() * 100);
+    var graphColor = 'hsl' + '(' + '246, ' + a + '%, ' + '50%' + ')';
     return graphColor;  
 };
 
-window.renderStatistics = function (ctx) {
+var getMaxElement = function(arr) {
+  var maxElement = arr[0];
+  
+  for (var i = 0; i < arr.length; i++) {
+    if (arr[i] > maxElement) {
+      maxElement = arr[i];
+    }
+  }
+  
+  return maxElement;
+};
+
+window.renderStatistics = function (ctx, players, times) {
   renderCloud(ctx, CLOUD_X + GAP, CLOUD_Y + GAP, 'rgba(0, 0, 0, 0.7)');
   renderCloud(ctx, CLOUD_X, CLOUD_Y, '#fff');
 
@@ -35,25 +47,17 @@ window.renderStatistics = function (ctx) {
   ctx.fillText('Ура вы победили!', 120, 40);
   ctx.fillText('Список результатов:', 120, 60);
 
-  var players = ['Вы', 'Иван', 'Юлия'];
+  var maxTime = getMaxElement(times);
 
   for (var i = 0; i < players.length; i++) {
     ctx.fillStyle = '#000';
     ctx.fillText(players[i], CLOUD_X + GAP_RIGHT + COLUMN_SPACE * i, GAP_TOP + BAR_HEIGHT + CLOUD_Y + FONT_GAP);
-    ctx.fillStyle = 'rgba(255, 0, 0, 1)'; 
-    ctx.fillRect(CLOUD_X + GAP_RIGHT + COLUMN_SPACE * i, GAP_TOP, BAR_WIDTH, BAR_HEIGHT);
+    if (players[i] === 'Вы') {
+      ctx.fillStyle = 'rgba(255, 0, 0, 1)';
+    } else {
+      ctx.fillStyle = toneGenerator();
+    };
+    ctx.fillRect(CLOUD_X + GAP_RIGHT + COLUMN_SPACE * i, BAR_HEIGHT - (BAR_HEIGHT * times[i]) / maxTime + GAP_TOP, BAR_WIDTH, (BAR_HEIGHT * times[i]) / maxTime);
   }
-
-
-
-  ctx.fillText(players[i], CLOUD_X + GAP_RIGHT + COLUMN_SPACE * i, GAP_TOP + BAR_HEIGHT + CLOUD_Y + FONT_GAP);
-  ctx.fillStyle = toneGenerator();
-  ctx.fillRect(CLOUD_X + GAP_RIGHT + COLUMN_SPACE * i, GAP_TOP, BAR_WIDTH, BAR_HEIGHT);
-
-
-
-  ctx.fillText(players[i], CLOUD_X + GAP_RIGHT + COLUMN_SPACE * i, GAP_TOP + BAR_HEIGHT + CLOUD_Y + FONT_GAP);
-  ctx.fillStyle = toneGenerator();
-  ctx.fillRect(CLOUD_X + GAP_RIGHT + COLUMN_SPACE * i, GAP_TOP, BAR_WIDTH, BAR_HEIGHT);
 };
 
