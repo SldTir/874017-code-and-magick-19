@@ -14,7 +14,7 @@ var similarWizardTemplate = document.querySelector('#similar-wizard-template')
     .content
     .querySelector('.setup-similar-item');
 
-var generatesAnIndexArray = function (number) {
+var getIndexArray = function (number) {
   var randomArrayIndex = Math.floor(Math.random() * number);
   return randomArrayIndex;
 };
@@ -23,10 +23,10 @@ var wizards = [];
 var createsMages = function (numberOfMages) {
   for (var i = 1; i <= numberOfMages; i++) {
     var mage = {
-      name: WIZARD_NAMES[generatesAnIndexArray(WIZARD_NAMES.length)],
-      surname: WIZARD_SURNAMES[generatesAnIndexArray(WIZARD_SURNAMES.length)],
-      coatColor: COAT_COLORS[generatesAnIndexArray(COAT_COLORS.length)],
-      eyesColor: EYES_COLORS[generatesAnIndexArray(EYES_COLORS.length)]
+      name: WIZARD_NAMES[getIndexArray(WIZARD_NAMES.length)],
+      surname: WIZARD_SURNAMES[getIndexArray(WIZARD_SURNAMES.length)],
+      coatColor: COAT_COLORS[getIndexArray(COAT_COLORS.length)],
+      eyesColor: EYES_COLORS[getIndexArray(EYES_COLORS.length)]
     };
     wizards.push(mage);
   }
