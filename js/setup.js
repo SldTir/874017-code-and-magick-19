@@ -1,16 +1,57 @@
+/* eslint-disable no-console */
 // Файл setup.js
 'use strict';
-var ESC_KEY = ESC_KEY;
+var ESC_KEY = 'Escape';
 var ENTER_KEY = 'Enter';
 var NUMBER_OF_WIZARDS = 4;
 var WIZARD_NAMES = ['Иван', 'Хуан Себастьян', 'Мария', 'Кристоф', 'Виктория', 'Юлия', 'Люпина', 'Вашингтон'];
 var WIZARD_SURNAMES = ['да Марья', 'Верон', 'Мирабелла', 'Вальц', 'Онопко', 'Топольницкая', 'Нионго', 'Ирвинг'];
 var COAT_COLORS = ['rgb(101, 137, 164)', 'rgb(241, 43, 107)', 'rgb(146, 100, 161)', 'rgb(56, 159, 117)', 'rgb(215, 210, 55)', 'rgb(0, 0, 0)'];
 var EYES_COLORS = ['black', 'red', 'blue', 'yellow', 'green'];
+var FIREBALL_COLOR = ['#ee4830', '#30a8ee', '#5ce6c0', '#e848d5', '#e6e848'];
 var userDialog = document.querySelector('.setup');
 var setup = document.querySelector('.setup');
 var setupOpen = document.querySelector('.setup-open');
 var setupClose = setup.querySelector('.setup-close');
+var setupUserName = document.querySelector('.setup-user-name');
+var setupWizard = document.querySelector('.setup-wizard');
+var magesMantle = setupWizard.querySelector('.wizard-coat');
+var eyeСolor = setupWizard.querySelector('.wizard-eyes');
+var setupFireballWrap = document.querySelector('.setup-fireball-wrap');
+var inputSetupFireballWrap = setupFireballWrap.querySelector('input');
+
+setupFireballWrap.addEventListener('click', function () {
+  setupFireballWrap.setAttribute('style', 'background-color: ' + FIREBALL_COLOR[generatesAnIndexArray(FIREBALL_COLOR.length)]);
+  inputSetupFireballWrap.value = setupFireballWrap.style.backgroundColor;
+});
+
+magesMantle.addEventListener('click', function () {
+  magesMantle.style.fill = COAT_COLORS[generatesAnIndexArray(COAT_COLORS.length)];
+});
+
+eyeСolor.addEventListener('click', function () {
+  eyeСolor.style.fill = EYES_COLORS[generatesAnIndexArray(EYES_COLORS.length)];
+});
+
+setupUserName.addEventListener('invalid', function () {
+  if (setupUserName.validity.tooShort) {
+    setupUserName.setCustomValidity('Имя должно состоять минимум из 2-х символов');
+  } else if (setupUserName.validity.tooLong) {
+    setupUserName.setCustomValidity('Имя не должно превышать 25-ти символов');
+  } else if (setupUserName.validity.valueMissing) {
+    setupUserName.setCustomValidity('Обязательное поле');
+  } else {
+    setupUserName.setCustomValidity('');
+  }
+});
+
+setupUserName.addEventListener('focus', function () {
+  document.removeEventListener('keydown', onPopupEscPress);
+});
+
+setupUserName.addEventListener('blur', function () {
+  document.addEventListener('keydown', onPopupEscPress);
+});
 
 var onPopupEscPress = function (evt) {
   if (evt.key === ESC_KEY) {
