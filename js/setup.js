@@ -8,7 +8,7 @@ var WIZARD_NAMES = ['Иван', 'Хуан Себастьян', 'Мария', 'К
 var WIZARD_SURNAMES = ['да Марья', 'Верон', 'Мирабелла', 'Вальц', 'Онопко', 'Топольницкая', 'Нионго', 'Ирвинг'];
 var COAT_COLORS = ['rgb(101, 137, 164)', 'rgb(241, 43, 107)', 'rgb(146, 100, 161)', 'rgb(56, 159, 117)', 'rgb(215, 210, 55)', 'rgb(0, 0, 0)'];
 var EYES_COLORS = ['black', 'red', 'blue', 'yellow', 'green'];
-var FIREBALL_COLOR = ['#ee4830', '#30a8ee', '#5ce6c0', '#e848d5', '#e6e848'];
+var COLOR_OF_FIREBALLS = ['#ee4830', '#30a8ee', '#5ce6c0', '#e848d5', '#e6e848'];
 var userDialog = document.querySelector('.setup');
 var setup = document.querySelector('.setup');
 var setupOpen = document.querySelector('.setup-open');
@@ -21,8 +21,9 @@ var setupFireballWrap = document.querySelector('.setup-fireball-wrap');
 var inputSetupFireballWrap = setupFireballWrap.querySelector('input');
 
 setupFireballWrap.addEventListener('click', function () {
-  setupFireballWrap.setAttribute('style', 'background-color: ' + FIREBALL_COLOR[generatesAnIndexArray(FIREBALL_COLOR.length)]);
-  inputSetupFireballWrap.value = setupFireballWrap.style.backgroundColor;
+  var randomFireballColorValue = COLOR_OF_FIREBALLS[generatesAnIndexArray(COLOR_OF_FIREBALLS.length)];
+  setupFireballWrap.setAttribute('style', 'background-color: ' + randomFireballColorValue);
+  inputSetupFireballWrap.value = randomFireballColorValue;
 });
 
 magesMantle.addEventListener('click', function () {
@@ -45,12 +46,10 @@ setupUserName.addEventListener('invalid', function () {
   }
 });
 
-setupUserName.addEventListener('focus', function () {
-  document.removeEventListener('keydown', onPopupEscPress);
-});
-
-setupUserName.addEventListener('blur', function () {
-  document.addEventListener('keydown', onPopupEscPress);
+setupUserName.addEventListener('keydown', function (evt) {
+  if (evt.key === ESC_KEY) {
+    evt.stopPropagation();
+  }
 });
 
 var onPopupEscPress = function (evt) {
