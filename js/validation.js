@@ -1,6 +1,6 @@
 'use strict';
 (function () {
-  //Здесь я делаю валидацию
+  // Здесь я делаю валидацию
   var setupUserName = document.querySelector('.setup-user-name');
 
   setupUserName.addEventListener('invalid', function () {

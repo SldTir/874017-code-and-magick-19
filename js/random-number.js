@@ -1,6 +1,6 @@
 'use strict';
 (function () {
-  //Здесь я вызываю случайные числа.
+  // Здесь я вызываю случайные числа.
   var generatesAnIndexArray = function (number) {
     var randomArrayIndex = Math.floor(Math.random() * number);
     return randomArrayIndex;

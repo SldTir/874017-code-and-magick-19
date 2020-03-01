@@ -1,6 +1,6 @@
 'use strict';
 (function () {
-  //Здесь я отрисовываю похожих магов.
+  // Здесь я отрисовываю похожих магов.
   var NUMBER_OF_WIZARDS = 4;
 
   var similarWizardTemplate = document.querySelector('#similar-wizard-template')

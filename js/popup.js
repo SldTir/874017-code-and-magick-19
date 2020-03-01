@@ -1,6 +1,6 @@
 'use strict';
 (function () {
-  //Здесь я открываю и закрываю попап.
+  // Здесь я открываю и закрываю попап.
   var setupElement = document.querySelector('.setup');
   var setupOpen = document.querySelector('.setup-open');
   var setupClose = setupElement.querySelector('.setup-close');

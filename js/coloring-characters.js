@@ -1,6 +1,6 @@
 'use strict';
 (function () {
-  //Здесь я делаю рандомную расскраску персонажей
+  // Здесь я делаю рандомную расскраску персонажей
 
   var setupWizard = document.querySelector('.setup-wizard');
 
