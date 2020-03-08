@@ -1,12 +1,13 @@
 'use strict';
 (function () {
+  var StatusCode = {
+    OK: 200
+  };
+  var TIMEOUT_IN_MS = 10000;
+  var xhr = new XMLHttpRequest();
+
   var save = function (data, onLoad, onError) {
     var URL = 'https://js.dump.academy/code-and-magick';
-    var StatusCode = {
-      OK: 200
-    };
-    var TIMEOUT_IN_MS = 10000;
-    var xhr = new XMLHttpRequest();
 
     xhr.responseType = 'json';
 
@@ -32,11 +33,6 @@
 
   var load = function (onLoad, onError) {
     var URL = 'https://js.dump.academy/code-and-magick/data';
-    var StatusCode = {
-      OK: 200
-    };
-    var TIMEOUT_IN_MS = 10000;
-    var xhr = new XMLHttpRequest();
 
     xhr.responseType = 'json';
 
