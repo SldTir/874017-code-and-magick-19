@@ -14,10 +14,4 @@
       setupUserName.setCustomValidity('');
     }
   });
-
-  setupUserName.addEventListener('keydown', function (evt) {
-    if (evt.key === window.util.ESC_KEY) {
-      evt.stopPropagation();
-    }
-  });
 })();

@@ -1,12 +1,16 @@
 'use strict';
 (function () {
   // Здесь я открываю и закрываю попап.
+  var ESC_KEY = 'Escape';
+  var ENTER_KEY = 'Enter';
+
   var setupElement = document.querySelector('.setup');
   var setupOpen = document.querySelector('.setup-open');
   var setupClose = setupElement.querySelector('.setup-close');
+  var setupUserName = document.querySelector('.setup-user-name');
 
   var onPopupEscPress = function (evt) {
-    if (evt.key === window.util.ESC_KEY) {
+    if (evt.key === ESC_KEY) {
       closePopup();
       setupElement.removeAttribute('style');
     }
@@ -28,7 +32,7 @@
 
 
   setupOpen.addEventListener('keydown', function (evt) {
-    if (evt.key === window.util.ENTER_KEY) {
+    if (evt.key === ENTER_KEY) {
       openPopup();
     }
   });
@@ -39,9 +43,15 @@
   });
 
   setupClose.addEventListener('keydown', function (evt) {
-    if (evt.key === window.util.ENTER_KEY) {
+    if (evt.key === ENTER_KEY) {
       closePopup();
       setupElement.removeAttribute('style');
+    }
+  });
+
+  setupUserName.addEventListener('keydown', function (evt) {
+    if (evt.key === ESC_KEY) {
+      evt.stopPropagation();
     }
   });
 })();

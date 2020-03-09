@@ -1,10 +1,11 @@
 'use strict';
 (function () {
-  var ESC_KEY = 'Escape';
-  var ENTER_KEY = 'Enter';
+  var generatesAnIndexArray = function (number) {
+    var randomArrayIndex = Math.floor(Math.random() * number);
+    return randomArrayIndex;
+  };
 
   window.util = {
-    ESC_KEY: ESC_KEY,
-    ENTER_KEY: ENTER_KEY
+    generatesAnIndexArray: generatesAnIndexArray
   };
 })();
